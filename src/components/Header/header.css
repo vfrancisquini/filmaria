@@ -6,3 +6,20 @@ header{
     height: 60px;
     background: #000;
 }
+
+.logo {
+    text-decoration: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.favoritos {
+    cursor: pointer;
+    background-color: #FFFFFF;
+    padding: 5px 14px;
+    text-decoration: none;
+    color: black;
+    border-radius: 4px;
+}
