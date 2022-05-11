@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import './filmeinfo.css';
 
 import api from '../../services/api';
@@ -8,7 +8,7 @@ function Filme(){
     const { id } =useParams();
     const [filme, setFilme] = useState({});
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate();
 
     useEffect(()=>{
         async function loadFilme(){
@@ -24,6 +24,8 @@ function Filme(){
                  })
                  .catch(()=>{
                      console.log("filme não encontrado");
+                     navigate("/", {replace: true});
+                     return;
                  })
         }
 
@@ -34,7 +36,25 @@ function Filme(){
             console.log ("Componente desmontado");
         }
 
-    },[])
+    },[navigate, id])
+
+    function salvarFilme(){
+        const minhaLista = localStorage.getItem("@victorFlix");
+
+        let filmesSalvos = JSON.parse(minhaLista) ||  [];
+        const hasFilme = filmesSalvos.some((filmesSalvo)=>filmesSalvo.id === filme.id)
+
+        if (hasFilme){
+            alert("esse filme já está na lista");
+            return;
+
+        }
+        filmesSalvos.push(filme);
+        localStorage.setItem("@victorFlix", JSON.stringify(filmesSalvos));
+        alert("filme salvo");
+
+    }
+
 
     if(loading){
         return(
@@ -54,7 +74,13 @@ function Filme(){
 
             <strong>Avaliação: {filme.vote_average} / 10</strong>
 
-            <div className="area-button">
+            <div className="area-buttons">
+                <button onClick={salvarFilme}>Salvar</button>
+                <button>
+                    <a href={"https://www.youtube.com/results?search_query="+filme.title} target="blank" rel="external">
+                        Trailer
+                    </a>
+                </button>
 
             </div>
         </div>

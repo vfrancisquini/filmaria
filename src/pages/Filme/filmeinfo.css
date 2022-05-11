@@ -4,6 +4,7 @@
     flex-direction: column;
     max-width: 800px;
     padding: 0 8px;
+    margin: 0 auto;
 
 }
 
@@ -30,3 +31,33 @@
     margin: 8px 0;
 }
 
+.area-buttons button{
+    margin-right: 12px;
+    margin-top: 14px;
+    margin-left: 0px;
+    font-size: 20px;
+    border: 0;
+    padding: 12px;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.5s;
+}
+
+.area-buttons button:hover{
+    background-color: brown;
+    color: white;
+
+
+}
+
+.area-buttons a{
+    text-decoration: none;
+    color: #000;
+    transition: all 0.5s;
+
+}
+
+.area-buttons a:hover{
+    color: white;
+}
